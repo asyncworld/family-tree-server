@@ -1,3 +1,5 @@
+import {AuthenticationComponent} from '@loopback/authentication';
+import {JWTAuthenticationComponent} from '@loopback/authentication-jwt';
 import {BootMixin} from '@loopback/boot';
 import {ApplicationConfig} from '@loopback/core';
 import {RepositoryMixin} from '@loopback/repository';
@@ -20,6 +22,11 @@ export class FamilyTreeApp extends BootMixin(
 
     // Set up the custom sequence
     this.sequence(MySequence);
+
+    // Mount authentication system
+    this.component(AuthenticationComponent);
+    // Mount jwt component
+    this.component(JWTAuthenticationComponent);
 
     // Set up default home page
     this.static('/', path.join(__dirname, '../public'));
